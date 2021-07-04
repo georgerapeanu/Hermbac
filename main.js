@@ -1,8 +1,6 @@
-///TODO change the year in the link
-
 const axios = require('axios');
 const cheerio = require('cheerio');
-const year = new Date().getFullYear() - 1;
+const year = new Date().getFullYear();
 const resultsDate = Date.parse('Jul 05 2021 12:00:00 GMT+0300');
 
 const discord = require("discord.js");
@@ -361,8 +359,7 @@ async function createDatabase(){
 async function resolveQueue(){
     let data = fs.readFileSync('queue.csv','utf-8');
     if(data.trim() == '' || data.trim == '\n'){
-        ///TODO change back to beforetimeout
-        await sleep(shortTimeout);
+        await sleep(beforetimeout);
         return ;
     }
     let user = data.split("\n")[0].split(',')[0];
