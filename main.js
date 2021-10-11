@@ -26,7 +26,7 @@ async function fetchData(url,timeout){
     while(true){
         let response = await axios(url).catch((err) => console.log(err));
         
-        if(response.status !== 200){
+        if(response === undefined || response.status ===undefined || response.status !== 200){
             console.log("Error occurred while fetching data");
             await sleep(timeout);
             continue;
@@ -359,7 +359,7 @@ async function createDatabase(){
 async function resolveQueue(){
     let data = fs.readFileSync('queue.csv','utf-8');
     if(data.trim() == '' || data.trim == '\n'){
-        await sleep(beforetimeout);
+        await sleep(beforeTimeout);
         return ;
     }
     let user = data.split("\n")[0].split(',')[0];
